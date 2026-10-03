@@ -25,6 +25,15 @@ import solver
 from tier_b import Alg, alg_cmp, root_free, strip0
 
 
+def exact_key(v):
+    """An exact dictionary key for a number: the canonical text of a rational function or rational.  Two equal
+    values may get different keys (if one is not in reduced form); that only costs a duplicate, never a merge of
+    different values (unlike Python's hash)."""
+    if isinstance(v, rf.RF):
+        return ('rf', str(v.n), str(v.d))
+    return ('q', str(Fraction(v)))
+
+
 def rf_const(ctx, x):
     return rf.RF(P([Q(x.numerator, x.denominator) if isinstance(x, Fraction) else Q(x)]), P([1]), ctx, reduce=False)
 
@@ -99,8 +108,12 @@ def nonneg_open(p, A, B):
                 R = Alg.rat(r)
             if alg_cmp(A, R) < 0 and alg_cmp(R, B) < 0:
                 return False
+    # no sign change inside (A, B): p has one sign there except at even-multiplicity zeros; test it at a point
+    # that is not a zero of p (a zero would not tell the sign)
     s = between(A, B)
-    return p(s) >= 0
+    while p(s) == 0:
+        s = between(Alg.rat(s), B)
+    return p(s) > 0
 
 
 def certify(loc, side, box, a, b, stats=None, max_runs=2000):
@@ -134,7 +147,7 @@ def certify(loc, side, box, a, b, stats=None, max_runs=2000):
     seen = set()
     dropped = 0
     for l in cand:
-        key = (hash(l[0]), hash(l[1]), hash(l[2]))
+        key = tuple(exact_key(v) for v in l)
         if key in seen:
             continue
         seen.add(key)
@@ -234,12 +247,12 @@ def edge_runner(loc, side, box, Lp, i, pos):
         out = []
         cache, gcache = {}, {}
         def f(p):
-            key = (hash(p[0]), hash(p[1]))
+            key = (exact_key(p[0]), exact_key(p[1]))
             if key not in cache:
                 cache[key] = solver.point_mass(loc, p[0], p[1], u, fr)
             return cache[key]
         def g(p):
-            key = (hash(p[0]), hash(p[1]))
+            key = (exact_key(p[0]), exact_key(p[1]))
             if key not in gcache:
                 gcache[key] = solver.poly_mass(loc, p[0], p[1], u, fr)
             return gcache[key]

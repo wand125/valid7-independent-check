@@ -182,14 +182,24 @@ def roots_open(p, lo, hi):
 
 
 def nonneg_on(p, lo, hi):
-    """Exact: p(x) >= 0 for all x in [lo, hi]."""
+    """Exact: p(x) >= 0 for all x in [lo, hi].  No root of odd multiplicity strictly inside, p >= 0 at both ends,
+    and p > 0 at one interior point that is not a root."""
     lo, hi = Q(lo), Q(hi)
     if p == 0:
         return True
     if p(lo) < 0 or p(hi) < 0:
         return False
-    for l, r in isolate(p, lo, hi):
-        for x in (l, r):
-            if p(x) < 0:
-                return False
-    return True
+    c, facs = p.factor_squarefree()
+    odd = P([1])
+    for q, k in facs:
+        if k % 2 == 1:
+            odd = odd * q
+    if odd.degree() > 0:
+        seq = sturm(squarefree(odd))
+        inside = count_roots(seq, lo, hi) - (1 if odd(hi) == 0 else 0)
+        if inside > 0:
+            return False
+    s = (lo + hi) / 2
+    while p(s) == 0:
+        s = (s + hi) / 2
+    return p(s) > 0

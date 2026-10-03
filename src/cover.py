@@ -113,4 +113,5 @@ if __name__ == '__main__':
     print("D4-invariant (segment measure as edge densities; polygons as vertex sets):", ok)
     for vs, w in c['polys']:
         print(f"polygon {[(str(x), str(y)) for x, y in vs]} mass {w} area {area(vs)} density {w/area(vs)}")
-    print("total < 46:", T < 46, "; 49 - total =", 49 - T, "; D =", (49 - T) / 4, "> 3/4:", (49 - T) / 4 > F(3, 4))
+    S2 = c['s'] * c['s']
+    print(f"s^2 - total = {S2 - T} = {float(S2 - T):.12f}; D = (s^2 - total)/4 = {(S2 - T) / 4}")
