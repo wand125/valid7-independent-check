@@ -1,4 +1,4 @@
-This repository contains one file taken from evand/square-packing:
+This repository contains two files taken from evand/square-packing:
 
   cover/L4_k02_box7.txt
     source: https://github.com/evand/square-packing
@@ -6,7 +6,13 @@ This repository contains one file taken from evand/square-packing:
             path s12/certificates/k2m3/L4_k02_box7.txt (unchanged; sha256
             c0a6750997897c21ffc693df6df97f89a248dd9eb588a2fe2b83bf359793694b)
 
-It is distributed under the following license:
+  cover/K4_k008_box9.txt
+    source: https://github.com/evand/square-packing
+            commit 0c24309099b28a2ae88d09cb841ca3110b3dd1c2,
+            path s12/certificates/k2m4/K4_k008_box9.txt (unchanged; sha256
+            4151d7c4059d5dcf56130c9373e6b5b60635e1a4250f46562d7ecc4d64a27801)
+
+They are distributed under the following license:
 
 MIT License
 

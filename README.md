@@ -87,6 +87,34 @@ found before the run was fixed with all earlier records discarded; the record he
 publication (path names only).  All of this, with the file hashes and which roots ran under which version, is in
 `versions/VERSIONS.md`.
 
+## ValidTilt9 (s(k² − 4) = k, k ≥ 8)
+
+The same checker certifies **ValidTilt9**, the finite statement on which evand/square-packing's proof of
+`s(k² − 4) = k` for all `k ≥ 8` rests (`s12/certificates/k2m4/`): for the box cover `cover/K4_k008_box9.txt` (2,076
+segments on the 1/5 grid and Lebesgue measure on `[14/5, 31/5]²`, total `3835229774429/50000000000`), every
+closed unit square inside `[0, 9]²` with centre in `[0, 9/2]²` and angle `θ = 2 arctan u`, `0 < u`,
+`u² + 2u ≤ 1` (`0 < θ ≤ 45°`), has mass `≥ 1`.  The statement was taken from the definitions `ValidTilt`, `sq` and
+`coord` in that repository's Lean files (rotation `c + R_θ[−½, ½]²`, as here); see `READ_LOG.md`.
+
+**Result (2026-10-06): ValidTilt9 holds.**  Centres `[0, 9/2]²` (pitch 1/10) × `u ∈ [0, 7/16]` (14 bins;
+`7/16 > √2 − 1`), no symmetry used: 28,350 roots, 0 uncertified, 0 counterexamples; 9,537,343 leaves (CORE
+6,565,165 / TIERB2 2,940,689 / EMPTY 31,489); about 766 core-hours.  `check_record.py --claim tilt` on the three
+records: `RECORD OK` (the roots are exactly the product grid of that region, each once; 2,000 CORE and 300 TIERB2
+leaves re-certified).  Records: release `records-tilt9-v1`; how the three records combine, the code versions and
+the run's history: `MERGE.md` in that release.
+
+```
+./verify_tilt9.sh      # downloads the three records, checks their sha256, runs check_record.py --claim tilt
+                       # (about 6 GB of memory)
+.venv/bin/python src/run_all.py cover/K4_k008_box9.txt --centers 0 9/2 0 9/2 --u 0 7/16 --ubins 14 \
+    --amin 1/1280 --bmid-u 7/16 --bmid-w 1/20 --nproc 32 --record runs/tilt9.jsonl   # the full run (add --resume)
+.venv/bin/python src/check_record.py cover/K4_k008_box9.txt runs/tilt9.jsonl --claim tilt
+```
+
+The driver `src/run_all.py` is the version used for the later part of this run (v2): it adds the options
+`--bmid-u` / `--bmid-w` (hand a box to the exact Tier B early); with their defaults it behaves exactly as before.
+
 ## License
 
-MIT (`LICENSE`).  `cover/L4_k02_box7.txt` is from evand/square-packing under its MIT license (`NOTICE`).
+MIT (`LICENSE`).  `cover/L4_k02_box7.txt` and `cover/K4_k008_box9.txt` are from evand/square-packing under its MIT
+license (`NOTICE`).

@@ -59,7 +59,8 @@ def solve_root(box):
             # keep the slab next to u = 0 thin: split u first
             stack += [((x0, x1, y0, y1, u0, um), d + 1), ((x0, x1, y0, y1, um, u1), d + 1)]
             continue
-        handoff = (touches0 and cw <= bw) or (not touches0 and max(cw, (u1 - u0) * F(14, 10)) <= OPT['amin'])
+        handoff = ((touches0 and cw <= bw) or (not touches0 and max(cw, (u1 - u0) * F(14, 10)) <= OPT['amin'])
+                   or (OPT['bmid_u'] and not touches0 and max(abs(u0), abs(u1)) <= OPT['bmid_u'] and cw <= OPT['bmid_w']))
         if handoff and not OPT['tierb']:
             uncert.append((bx, 'needB:%.6f' % float(b))); continue
         if handoff:
@@ -117,12 +118,15 @@ def main():
     ap.add_argument('--ub0', default='1/32', help='width of the u-slab next to 0 handled by Tier B')
     ap.add_argument('--amin', default='1/320', help='Tier A gives up (hands to Tier B) when centre width and 1.4 x u-width are both below this')
     ap.add_argument('--bruns', type=int, default=400)
+    ap.add_argument('--bmid-u', default='0', help='for |u| <= this (boxes not touching 0), hand a box to Tier B as soon as '
+                    'its centre width is <= --bmid-w (0: off)')
+    ap.add_argument('--bmid-w', default='1/20')
     ap.add_argument('--no-tierb', action='store_true')
     ap.add_argument('--nproc', type=int, default=1)
     ap.add_argument('--record', required=True)
     ap.add_argument('--resume', action='store_true')
     a = ap.parse_args()
-    opt = {'ub0': F(a.ub0), 'amin': F(a.amin), 'bwidth': F(a.bwidth), 'bmin': F(a.bmin), 'depth': a.depth, 'bruns': a.bruns, 'tierb': not a.no_tierb}
+    opt = {'bmid_u': F(a.bmid_u), 'bmid_w': F(a.bmid_w), 'ub0': F(a.ub0), 'amin': F(a.amin), 'bwidth': F(a.bwidth), 'bmin': F(a.bmin), 'depth': a.depth, 'bruns': a.bruns, 'tierb': not a.no_tierb}
     cov = Cover(a.cover)
     X0, X1, Y0, Y1 = map(F, a.centers) if a.centers else (F(0), cov.s, F(0), cov.s)
     U0, U1 = map(F, a.u); p = F(a.pitch)

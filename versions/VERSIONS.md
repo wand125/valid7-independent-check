@@ -67,3 +67,10 @@ so was added.  The hash values and every other line are unchanged; `check_record
 | `full_b.jsonl` | d9eaf41d4f9846b867265a400bbdaeff14678b2af9486eaf01ecba90bb70f9d9 | e0fb45b60ed9e4986f7dd7dba3ff6b01787a7f5943387d1dd6a57231fd10123a |
 
 `records.sha256` (in the release) lists the published files, compressed and uncompressed.
+
+## After the Valid7 run
+
+For the ValidTilt9 run (README, section ValidTilt9) `src/run_all.py` was extended once more (sha256 cd6627de…):
+it adds the options `--bmid-u` / `--bmid-w` and behaves exactly as before with their defaults.  The Valid7 run's
+drivers remain in `versions/V1/` and `versions/V2/` above; the ValidTilt9 run's versions and history are in the
+`MERGE.md` of the release `records-tilt9-v1`.
