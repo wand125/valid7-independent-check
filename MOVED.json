@@ -1,0 +1,142 @@
+{
+ "schema": "moved/v1",
+ "old_repository": "wand125/valid7-independent-check",
+ "old_head": "c561dbb3fcea9178599db017f51f56b42ad9f91f",
+ "new_repository": "wand125/square-packing",
+ "note": "Every path of the old repository at old_head and where it lives now: 'new' is a path in the new repository's git tree (documents, code, metadata); 'new_release' is a release asset (certificate data) with the path inside it. The old repository is archived (read-only); its history and releases remain available.",
+ "paths": [
+  {
+   "old": ".gitignore",
+   "new": "checks/valid7/.gitignore"
+  },
+  {
+   "old": "DESIGN.md",
+   "new": "checks/valid7/DESIGN.md"
+  },
+  {
+   "old": "LICENSE",
+   "new": "checks/valid7/LICENSE"
+  },
+  {
+   "old": "NOTICE",
+   "new": "checks/valid7/NOTICE"
+  },
+  {
+   "old": "README.md",
+   "new": "checks/valid7/README.md"
+  },
+  {
+   "old": "READ_LOG.md",
+   "new": "checks/valid7/READ_LOG.md"
+  },
+  {
+   "old": "cover/K4_k008_box9.txt",
+   "new": "checks/valid7/cover/K4_k008_box9.txt"
+  },
+  {
+   "old": "cover/L4_k02_box7.txt",
+   "new": "checks/valid7/cover/L4_k02_box7.txt"
+  },
+  {
+   "old": "requirements.txt",
+   "new": "checks/valid7/requirements.txt"
+  },
+  {
+   "old": "src/axis_mass.py",
+   "new": "checks/valid7/src/axis_mass.py"
+  },
+  {
+   "old": "src/check_record.py",
+   "new": "checks/valid7/src/check_record.py"
+  },
+  {
+   "old": "src/cover.py",
+   "new": "checks/valid7/src/cover.py"
+  },
+  {
+   "old": "src/rf.py",
+   "new": "checks/valid7/src/rf.py"
+  },
+  {
+   "old": "src/run_a.py",
+   "new": "checks/valid7/src/run_a.py"
+  },
+  {
+   "old": "src/run_all.py",
+   "new": "checks/valid7/src/run_all.py"
+  },
+  {
+   "old": "src/solver.py",
+   "new": "checks/valid7/src/solver.py"
+  },
+  {
+   "old": "src/tier_a.py",
+   "new": "checks/valid7/src/tier_a.py"
+  },
+  {
+   "old": "src/tier_b.py",
+   "new": "checks/valid7/src/tier_b.py"
+  },
+  {
+   "old": "src/tier_b2.py",
+   "new": "checks/valid7/src/tier_b2.py"
+  },
+  {
+   "old": "tests/M1_wall_1e-4.txt",
+   "new": "checks/valid7/tests/M1_wall_1e-4.txt"
+  },
+  {
+   "old": "tests/M2_leb_1e-4.txt",
+   "new": "checks/valid7/tests/M2_leb_1e-4.txt"
+  },
+  {
+   "old": "tests/M3_corner_1e-4.txt",
+   "new": "checks/valid7/tests/M3_corner_1e-4.txt"
+  },
+  {
+   "old": "tests/make_mutants.py",
+   "new": "checks/valid7/tests/make_mutants.py"
+  },
+  {
+   "old": "tests/run_mutants.sh",
+   "new": "checks/valid7/tests/run_mutants.sh"
+  },
+  {
+   "old": "verify.sh",
+   "new": "checks/valid7/verify.sh"
+  },
+  {
+   "old": "verify_tilt9.sh",
+   "new": "checks/valid7/verify_tilt9.sh"
+  },
+  {
+   "old": "versions/V1/run_all.py",
+   "new": "checks/valid7/versions/V1/run_all.py"
+  },
+  {
+   "old": "versions/V1/tier_b2.py",
+   "new": "checks/valid7/versions/V1/tier_b2.py"
+  },
+  {
+   "old": "versions/V2/run_all.py",
+   "new": "checks/valid7/versions/V2/run_all.py"
+  },
+  {
+   "old": "versions/V2/tier_b2.py",
+   "new": "checks/valid7/versions/V2/tier_b2.py"
+  },
+  {
+   "old": "versions/VERSIONS.md",
+   "new": "checks/valid7/versions/VERSIONS.md"
+  }
+ ],
+ "releases": [
+  {
+   "old_tag": "records-v1",
+   "old_url": "https://github.com/wand125/valid7-independent-check/releases/tag/records-v1",
+   "new_tag": null,
+   "mirror": "none (approved: keep the original release, referenced here)",
+   "note": "per-root records, re-checked by verify.sh"
+  }
+ ]
+}

@@ -1,3 +1,5 @@
+> **Moved:** this repository is now part of [wand125/square-packing](https://github.com/wand125/square-packing/tree/main/checks/valid7) (`checks/valid7/`). This copy is archived; every path is mapped in `MOVED.json`, and old links, commits and releases keep working.
+
 # Valid7: an independent exact check
 
 **Claim.**  Let `μ₇` be the mixed cover `cover/L4_k02_box7.txt` of the square `[0, 7]²` (from
